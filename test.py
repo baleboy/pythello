@@ -36,7 +36,7 @@ class TestStartingPosition(unittest.TestCase):
 
     def test_start_turn(self):
         g = game.Game()
-        self.assertEqual(g.turn, game.black)
+        self.assertEqual(g.turn, game.BLACK)
 
 
 class TestInvalidMoves(unittest.TestCase):
@@ -60,7 +60,7 @@ class TestValidMoves(unittest.TestCase):
 
         g = game.Game()
 
-        self.assertEqual(g.turn, game.black)
+        self.assertEqual(g.turn, game.BLACK)
         g.playMove('c', 4)
 
         expected = [
@@ -79,7 +79,7 @@ class TestValidMoves(unittest.TestCase):
     def test_turn_two_files(self):
 
         g = game.Game()
-        g.turn = game.white
+        g.turn = game.WHITE
 
         g.board = [
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],

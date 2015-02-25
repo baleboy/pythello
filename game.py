@@ -19,9 +19,9 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-empty = ' '
-black = '0'
-white = 'O'
+EMPTY = ' '
+BLACK = '0'
+WHITE = 'O'
 
 directions = [
     (-1, 1), (-1, 0), (0, 1), (1, 1), (0, 1), (1, 0), (-1, -1), (0, -1)
@@ -31,18 +31,18 @@ directions = [
 class Game:
 
     def __init__(self):
-        self.board = [[empty]*8 for i in range(8)]
-        self.board[3][3] = white
-        self.board[3][4] = black
-        self.board[4][3] = black
-        self.board[4][4] = white
+        self.board = [[EMPTY]*8 for i in range(8)]
+        self.board[3][3] = WHITE
+        self.board[3][4] = BLACK
+        self.board[4][3] = BLACK
+        self.board[4][4] = WHITE
 
-        self.turn = black
+        self.turn = BLACK
 
-        self.score = {black: 2, white: 2}
+        self.score = {BLACK: 2, WHITE: 2}
 
     def opposite(self):
-        return white if self.turn == black else black
+        return WHITE if self.turn == BLACK else BLACK
 
     def scanDirection(self, row, col, direction, color):
 
@@ -57,8 +57,8 @@ class Game:
             curRow += direction[0]
             curCol += direction[1]
 
-        if curRow >= 0 and curRow <= 7 and curCol >= 0
-        and curCol <= 7 and piecesToTurn > 0:
+        if (curRow >= 0 and curRow <= 7 and curCol >= 0 and
+                curCol <= 7 and piecesToTurn > 0):
             if self.board[curRow][curCol] == color:
                 return piecesToTurn
             else:
@@ -72,7 +72,7 @@ class Game:
         if row > 7 or row < 0:
             return False
 
-        if self.board[row][col] != empty:
+        if self.board[row][col] != EMPTY:
             return False
 
         validMove = False
@@ -108,7 +108,7 @@ class Game:
 
         for row in range(8):
             for col in range(8):
-                if self.board[row][col] == empty:
+                if self.board[row][col] == EMPTY:
                     for dir in directions:
                         if self.scanDirection(row, col, dir, self.turn) > 0:
                             res = True
@@ -121,7 +121,7 @@ class Game:
 
     def hasMovesAvailable(self):
 
-        if self.score[white] + self.score[black] == 64:
+        if self.score[WHITE] + self.score[BLACK] == 64:
             return False
 
         if self.playerCanMove():
